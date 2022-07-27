@@ -11,18 +11,18 @@ export function getById(id) {
     return sendRequest(`${BASE_URL}/${id}`)
 }
 
-export function createPost(postData) {
-    return sendRequest(`${BASE_URL}`, 'POST', postData)
+export function createPost(postD) {
+    return sendRequest(`${BASE_URL}`, 'POST', postD)
 }
 
-export function updatePost(postData) {
-    return sendRequest(`${BASE_URL}/${postData._id}`, 'PUT', postData)
+export function updatePost(postD) {
+    return sendRequest(`${BASE_URL}/${postD._id}`, 'PUT', postD)
 }
 
-export function deletePost(postData) {
-    return sendRequest(`${BASE_URL}/${postData._id}`, 'DELETE', postData)
+export function deletePost(postD) {
+    return sendRequest(`${BASE_URL}/${postD._id}`, 'DELETE', postD)
 }
 
-export function likePost(postData) {
-    return sendRequest(`${BASE_URL}/${postData._id}/like`, 'PUT', postData)
+export function likePost(postD) {
+    return sendRequest(`${BASE_URL}/${postD._id}/like`, 'PUT', postD)
 }

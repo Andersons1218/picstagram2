@@ -1,6 +1,6 @@
 import FileBase64 from 'react-file-base64';
 import { Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function NewPost({ user, setUser }) {
     
@@ -23,7 +23,7 @@ export default function NewPost({ user, setUser }) {
         e.preventDefault();
         const newPost = await createPost(postD);
         setPostD(newPost);
-        setCreatePost(true)
+        setCreatePost()
         setPostD({
           user: user._id,
           likes: 0,

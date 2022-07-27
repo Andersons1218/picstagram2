@@ -1,24 +1,27 @@
-import * as postAPi from '../utilities/posts-api'
-import {useState, useEffect} from 'react'
+import React from 'react'
+import Post from '../Post/Post'
+import * as postsAPI from '../../utilities/posts-api'
+import { useState, useEffect } from 'react'
 
-
-export default function Posts({ user, setUser, post }) {
-    const [post , setPost] = useState()
-useEffect(() => {
-    const getPost = async () => {
-        const post = await postAPi.getPost(post._id)
-        setPost(post)
+const Posts = ({filterUserId, user, post, setPost}) => {
+  const [posts, setPosts] = useState('')
+  useEffect(() => {
+    const getPosts = async () => {
+      const updatedPosts = await postsAPI.getPosts(filterUserId)
+      setPosts(updatedPosts)
     }
-    getPost()
-}, [])
-
+    getPosts()
+  }, [post])
+  
+  
   return (
-    <>
-      <div>
-        <h1>Post</h1>
-        {post ?  
-        post.map(item => <Post posts={posts} setPosts={setPosts} user={user} post={item} setPost={setPost}/>):}
-      </div>
-    </>
-  );
-  }
+    <div>
+        <h1>Posts</h1>
+        {posts ?  
+        posts.map(item => <Post posts={posts} setPosts={setPosts} user={user} post={item} setPost={setPost}/>)
+        : <p>Loading...</p>}
+    </div>
+  )
+}
+
+export default Posts
