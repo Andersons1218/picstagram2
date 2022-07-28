@@ -18,9 +18,9 @@ code {
   --tan-2: #E7E2DD;
   --tan-3: #E2D9D1;
   --tan-4: #D3C1AE;
-  --orange: #F67F00;
+  --blue:  blue;
   --text-light: #968c84;
-  --text-dark: #615954;
+  --text-dark: #0a0a0a;
 }
 
 *, *:before, *:after {

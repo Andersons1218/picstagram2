@@ -1,4 +1,4 @@
-import {updatePost, deletePost, likePost } from '../utilities/post-api'
+import {updatePost, deletePost, likePost } from '../utilities/posts-api'
 import { useState } from "react";
 import UpdatePostForm from "../components/UpdatePostForm";
 

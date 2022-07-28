@@ -2,7 +2,7 @@
 import FileBase64 from "react-file-base64";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { createPost } from '../utilities/post-api'
+import { createPost } from '../utilities/posts-api'
 
 export default function NewPost({ user, post, setPost }) {
   let { userId } = useParams();
@@ -50,7 +50,7 @@ export default function NewPost({ user, post, setPost }) {
                 alt="Add Photo"
               />
               <input
-                placeholder="Show us your cats!"
+                placeholder="Add a caption..."
                 className="newPostInput"
                 type="text"
                 name="description"
