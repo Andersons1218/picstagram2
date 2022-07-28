@@ -1,6 +1,6 @@
 import {updatePost, deletePost, likePost } from '../utilities/post-api'
 import { useState, useEffect } from 'react'
-import movement from 'movement'
+import moment from 'moment'
 export default function Post({ user, post, setPost, setPosts, posts }) {
     const allowUpdate = post.user._id === user._id;
     
