@@ -1,6 +1,10 @@
 import {updatePost, deletePost, likePost } from '../utilities/post-api'
-import { useState, useEffect } from 'react'
-import moment from 'moment'
+import { MoreVert, Favorite } from "@mui/icons-material/";
+import moment from "moment";
+import { useState } from "react";
+import UpdatePostForm from "../components/UpdatePostForm";
+
+
 export default function Post({ user, post, setPost, setPosts, posts }) {
     const allowUpdate = post.user._id === user._id;
     
