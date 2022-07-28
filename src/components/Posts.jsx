@@ -1,6 +1,6 @@
 import React from 'react'
-import Post from '../Post/Post'
-import * as postsAPI from '../../utilities/posts-api'
+import Post from '../components/Post'
+import { postsAPI } from ''
 import { useState, useEffect } from 'react'
 
 const Posts = ({filterUserId, user, post, setPost}) => {

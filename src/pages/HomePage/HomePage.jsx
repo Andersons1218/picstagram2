@@ -1,4 +1,4 @@
-import Post from "../../components/Post";
+import Feed from "../../components/Feed";
 
 export default function HomePage({user, setUser}) {
     return (
@@ -6,7 +6,7 @@ export default function HomePage({user, setUser}) {
         <div>
             <h1>Home Page</h1>
             <hr />
-            <Post user={user} setUser={setUser}/>
+            <Feed user={user} setUser={setUser}/>
             <p>Welcome to the home page</p>
         </div>
         </>

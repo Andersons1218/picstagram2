@@ -1,4 +1,4 @@
-import Posts from "../Posts/Posts"
+import Posts from "../components/Posts"
 export default function Feed({filterUserId, user, post, setPost}) {
 	return (
 		<>

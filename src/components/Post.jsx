@@ -1,8 +1,7 @@
 import {updatePost, deletePost, likePost } from '../utilities/post-api'
-import { MoreVert, Favorite } from "@mui/icons-material/";
-import moment from "moment";
 import { useState } from "react";
 import UpdatePostForm from "../components/UpdatePostForm";
+
 
 
 export default function Post({ user, post, setPost, setPosts, posts }) {
@@ -63,7 +62,7 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
                   Created: {new Date(post.createdAt).toLocaleDateString()}{" "}
                 </span>
                 <span className="postDate">
-                  Updated: {moment(post.updatedAt).fromNow()}
+               
                 </span>
                 {allowUpdate && (
                   <div className="updateDeleteButtons">
@@ -104,7 +103,7 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
             )}
             <div className="postBottom">
               <div className="postBottomLeft">
-                <Favorite onClick={likeHandler} />
+               
                 <span className="postFavorites">{like} people liked this</span>
               </div>
               <div className="postBottomRight">

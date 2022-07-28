@@ -1,4 +1,4 @@
-import { AddAPhoto } from "@mui/icons-material/";
+
 import FileBase64 from "react-file-base64";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -54,7 +54,7 @@ export default function NewPost({ user, post, setPost }) {
                 className="newPostInput"
                 type="text"
                 name="description"
-                value={postData.description}
+                value={postData.caption}
                 onChange={handleChange}
                 required
               />
@@ -63,7 +63,6 @@ export default function NewPost({ user, post, setPost }) {
             <div className="newPostsBottom">
               <div className="newPostsOptions">
                 <div className="option">
-                  <AddAPhoto />
                   <span className="newPostsText">Photo</span>
                   <FileBase64
                     type="file"

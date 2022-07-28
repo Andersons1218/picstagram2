@@ -1,14 +1,11 @@
-import NavBar from "../../components/NavBar/NavBar";
+import NavBar from "../../components/NavBar";
 import AuthPage from "../AuthPage/AuthPage";
 import { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
 import HomePage from "../HomePage/HomePage";
-import Footer from "../../components/Footer/Footer";
-import UserSettingPage from "../UserSettingPage/UserSettingPage";
-import UserProfilePage from "../UserProfilePage/UserProfilePage";
 import CreatePost from "../../pages/CreatePost/CreatePost";
-import UpdatePostPage from '../../pages'
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -28,22 +25,13 @@ export default function App() {
               path="/"
               element={<HomePage user={user} post={post} setPost={setPost} />}
             ></Route>
-            <Route
-              path="/profiles"
-              element={
-                <UserProfilePage user={user} post={post} setPost={setPost} />
-              }
-            ></Route>
-            {/* redirect to /orders/new if path in address bar hasn't matched a <Route> above */}
             <Route path="/*" element={<Navigate to="/api/posts" />} />
           </Routes>
-          <Footer />
         </>
       ) : (
         <Routes>
           <Route path="/" element={<AuthPage setUser={setUser} />} />
         </Routes>
-        // <AuthPage setUser={setUser} />
       )}
     </div>
   );
