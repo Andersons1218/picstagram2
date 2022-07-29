@@ -16,11 +16,12 @@ export function createPost(postData) {
 }
 
 export function updatePost(postData) {
-    return sendRequest(`${BASE_URL}/${postData._id}`, 'PUT', postData)
+    console.log(postData)
+    return sendRequest(`${BASE_URL}/${postData}`, 'PUT', postData)
 }
 
 export function deletePost(postData) {
-    return sendRequest(`${BASE_URL}/${postData._id}`, 'DELETE', postData)
+    return sendRequest(`${BASE_URL}/${postData}`, 'DELETE')
 }
 
 export function likePost(postData) {
