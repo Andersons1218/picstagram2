@@ -1,19 +1,23 @@
-export default async function sendRequest(url, method = "GET", payload = null) {
-    // Fetch uses an options object as a second arg to make requests
-    // other than basic GET requests, include data, headers, etc.
-    const options = { method };
-    if (payload) {
-      options.headers = { "Content-Type": "application/json" };
-      
-      // Fetch requires data payloads to be stringified
-      // and assigned to a body property on the options object
-      options.body = JSON.stringify(payload);
-    }
-    const res = await fetch(url, options);
-    console.log(res)
-  
-    //res.ok will be false if the status code is set to 4xx in the controller action
-    // this is if else statement, if res.ok, send res.json(), else throw error
-    if (res.ok) return res.json();
-    throw new Error("Bad request");
+import { getToken } from './users-service';
+
+export default async function sendRequest(url, method = 'GET', payload = null) {
+  // Fetch takes an optional options object as the 2nd argument
+  // used to include a data payload, set headers, etc. 
+  const options = { method };
+  if (payload) {
+    options.headers = { 'Content-Type': 'application/json' };
+    options.body = JSON.stringify(payload);
   }
+  const token = getToken();
+  if (token) {
+    // Ensure headers object exists
+    options.headers = options.headers || {};
+    // Add token to an Authorization header
+    // Prefacing with 'Bearer' is recommended in the HTTP specification
+    options.headers.Authorization = `Bearer ${token}`;
+  }
+  const res = await fetch(url, options);
+  // res.ok will be false if the status code set to 4xx in the controller action
+  if (res.ok) return res.json();
+  throw new Error('Bad Request');
+}

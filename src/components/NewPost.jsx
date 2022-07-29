@@ -10,7 +10,7 @@ export default function NewPost({ user, post, setPost }) {
   const [postData, setPostData] = useState({
     user: user._id,
     likes: 0,
-    description: "",
+    caption: "",
     image: "",
   });
 
@@ -24,12 +24,12 @@ export default function NewPost({ user, post, setPost }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newPost = await createPost(postData);
-    setPost(newPost);
+    setPostData(newPost);
     setIsNewPostCreated(true)
     setPostData({
       user: user._id,
       likes: 0,
-      description: "",
+      caption: "",
       image: "",
     })
   };
@@ -44,16 +44,12 @@ export default function NewPost({ user, post, setPost }) {
         <form autoComplete="off">
           <div className="newPostsContainer">
             <div className="newPostsTop">
-              <img
-                className="profilePicture"
-                src={user.avatar}
-                alt="Add Photo"
-              />
+             
               <input
                 placeholder="Add a caption..."
                 className="newPostInput"
                 type="text"
-                name="description"
+                name="caption"
                 value={postData.caption}
                 onChange={handleChange}
                 required

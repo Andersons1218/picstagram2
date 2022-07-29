@@ -25,7 +25,7 @@ export default function App() {
               path="/"
               element={<HomePage user={user} post={post} setPost={setPost} />}
             ></Route>
-            <Route path="/*" element={<Navigate to="/api/posts" />} />
+            <Route path="/" element={<Navigate to="/api/posts" />} />
           </Routes>
         </>
       ) : (

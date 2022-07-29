@@ -1,10 +1,10 @@
 import Posts from "../components/Posts"
-export default function Feed({filterUserId, user, post, setPost}) {
+export default function Feed({ user, post, setPost}) {
 	return (
 		<>
 			<div className='feed'>
 				<div className='feedcontainer'>
-					<Posts filterUserId={filterUserId} user={user} post={post} setPost={setPost}/>
+					<Posts user={user} post={post} setPost={setPost}/>
 				</div>
 			</div>
 		</>

@@ -59,7 +59,7 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
               <div className="postTopLeft">
                
                 <span className="postDate">
-                  Created: {new Date(post.createdAt).toLocaleDateString()}{" "}
+                  
                 </span>
                 <span className="postDate">
                
@@ -95,15 +95,15 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
             ) : (
               <div className="postCenter">
                 <span className="postText">
-                  {post.description} <hr />
+                  {post.caption} <hr />
                   <br />
                 </span>
-                {post.image && <img alt="rascal" src={post.image} />}
+                {post.image && <img alt="" src={post.image} />}
               </div>
             )}
             <div className="postBottom">
               <div className="postBottomLeft">
-               
+             
                 <span className="postFavorites">{like} people liked this</span>
               </div>
               <div className="postBottomRight">
