@@ -8,7 +8,7 @@ import { Avatar } from "@mui/material";
 
 export default function Post({ user, post, setPost, setPosts, posts }) {
   const allowUpdate = post.user === user._id;
-console.log(allowUpdate)
+  
   const [isUpdate, setIsUpdate] = useState(false);
   const [postData, setPostData] = useState({
     _id: post._id,
@@ -21,11 +21,7 @@ console.log(allowUpdate)
     isUpdate ? setIsUpdate(false) : setIsUpdate(true);
   };
 
-  // const handleDelete = async (e) => {
-  //   e.preventDefault();
-  //   await postAPI.deletePost(post._id);
-  //   setPosts(posts.filter((item) => item._id !== post._id));
-  // }
+
 
   const handleDelete = async (event) => {
     event.preventDefault();
@@ -57,8 +53,22 @@ console.log(allowUpdate)
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
-console.log(post.user)
-console.log(user._id)
+const [comment, setComment] = useState("");
+
+  const handleComment = async (event) => {
+    event.preventDefault()
+    console.log("comment");
+    const postComment = await postComment(postData);
+    setComment(postComment);
+  }
+
+  const handleChange = (event) => {
+    setPostData({
+      ...postData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <>
       <div className="post">
@@ -120,7 +130,18 @@ console.log(user._id)
               <span className="postFavorites">{like} people liked this</span>
             </div>
             <div className="postBottomRight">
+              <form action="">
+                <input
+              placeholder="Add a comment"
+              type="text"
+              name="comment"
+              value={post.comment}
+              onChange={handleComment}
+              />
+                <button onClick={handleChange}>Add A Comment</button>
+             </form>
               <span className="postComment">{post.comment}comments</span>
+               
             </div>
           </div>
         </div>
@@ -128,4 +149,3 @@ console.log(user._id)
     </>
   )
 }
-

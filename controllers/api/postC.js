@@ -7,6 +7,7 @@ module.exports = {
   updatePost,
   deletePost,
   likePost,
+  createComment,
 };
 // createPost
 async function createPost(req, res) {
@@ -41,12 +42,12 @@ async function getAllPost(req, res) {
 }
 //update a post
 async function updatePost(req, res) {
-  const { caption } = req.body;
-  console.log(req.body, "this is req");
+  const { caption, image } = req.body;
+    console.log(req.body)
   try {
     let upDatedPost = await Post.findOneAndUpdate(
       { _id: req.body._id },
-      { $set: { caption } }
+      { $set: { caption, image } }
     );
     res.json(upDatedPost);
   } catch (err) {
@@ -64,10 +65,8 @@ async function updatePost(req, res) {
 // delete a post
 async function deletePost(req, res) {
   const postId = req.params.id;
-  console.log(req.body);
   try {
     Post.findOneAndDelete({ _id: postId }, function (err, post) {});
-    console.log("is it hitting here");
     res.json({ message: "Post deleted" });
   } catch (err) {
     res.json(err);
@@ -98,17 +97,16 @@ async function likePost(req, res) {
   }
 }
 
-// const postData = req.body;
-//     const userId = postData.user
-//     const postId = req.params.id
-//     try {
-//         const post = await Post.findById(postId)
-//         if (post.user.toString() !== userId) {
-//             res.status(401).json({ message: 'Unauthorized delete' })
-//         } else {
-//             await Post.findByIdAndDelete(postId)
-//             res.json({ message: 'Post deleted' })
-//         }
-//     } catch (err) {
-//         res.json(err)
-//     }
+//create comment on a post
+async function createComment(req, res) {
+    const { comment, user } = req.body;
+    console.log(req.body, "req.body")
+    try {
+        const post = await Post.findById(req.params.id);
+        post.comments.push({ comment, user });
+        await post.save();
+        res.json(post);
+    } catch (err) {
+        res.json(err);
+    }
+    }

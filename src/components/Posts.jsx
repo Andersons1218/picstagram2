@@ -21,7 +21,7 @@ const Posts = ({user, post, setPost}) => {
         <div>
         {posts ?  
         posts.map(item => <Post posts={posts} setPosts={setPosts} user={user} post={item} setPost={setPost}/>)
-        : <p>feed starts here</p>}
+        : <p>loading content...</p>}
         </div>
         
     </div>
