@@ -1,4 +1,5 @@
 import Feed from "../../components/Feed";
+import './HomePage.css';
 
 export default function HomePage({user, setUser}) {
     return (

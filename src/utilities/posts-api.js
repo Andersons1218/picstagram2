@@ -27,8 +27,8 @@ export function deletePost(postData) {
 export function likePost(postData) {
     return sendRequest(`${BASE_URL}/${postData._id}/like`, 'PUT', postData)
 }
-export function createComment(postData) {
-    return sendRequest(`${BASE_URL}/${postData._id}/comments`, 'POST', postData)
+export function createComment(postId, comment) {
+    return sendRequest(`${BASE_URL}/${postId}/comments`, 'POST', {comment})
 }
 /*--- Helper Functions ---*/
 

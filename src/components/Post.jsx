@@ -1,4 +1,4 @@
-import { updatePost, deletePost, likePost } from "../utilities/posts-api";
+import { updatePost, deletePost, likePost, createComment } from "../utilities/posts-api";
 import { useState } from "react";
 import UpdatePostForm from "../components/UpdatePostForm";
 import { MoreVert, Favorite } from "@mui/icons-material/";
@@ -23,8 +23,8 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
 
 
 
-  const handleDelete = async (event) => {
-    event.preventDefault();
+  const handleDelete = async (e) => {
+    e.preventDefault();
     console.log("delete");
   deletePost(post._id);
     console.log('omg just delete')
@@ -32,8 +32,8 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
   };
   
 
-  const handleUpdate = async (event) => {
-    event.preventDefault();
+  const handleUpdate = async (e) => {
+    e.preventDefault();
     console.log("update");
     const updatedPost = await updatePost(postData);
     setPostData(updatedPost);
@@ -42,8 +42,8 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
 
   const [like, setLike] = useState(post.likes.length);
   const [isLiked, setIsLiked] = useState(false);
-  const likeHandler = async (event) => {
-    event.preventDefault();
+  const likeHandler = async (e) => {
+    e.preventDefault();
     const postObj = {
       _id: post._id,
       user: user._id,
@@ -53,31 +53,34 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
-const [comment, setComment] = useState("");
+const [comment, setComment] = useState('');
 
-  const handleComment = async (event) => {
-    event.preventDefault()
+  const handleComment = async (e) => {
+    e.preventDefault()
     console.log("comment");
-    const postComment = await postComment(postData);
-    setComment(postComment);
+   createComment(post._id, comment);
+    setComment('');
   }
 
-  const handleChange = (event) => {
+  const handleChange = (e) => {
+    if (e.target.name === "comment"){
+      setComment(e.target.value)
+    } else {
     setPostData({
       ...postData,
-      [event.target.name]: event.target.value,
-    });
+      [e.target.name]: e.target.value,
+    })};
   };
 
   return (
     <>
       <div className="post">
-        <div className="postWrapper">
+        <div className="post__header">
           <div className="postTop">
             <div className="postTopLeft">
               <div>
                 <Avatar alt="User profile image" src={post.user.avatar} />
-                <div className="postUsername">{post.user.name}</div>
+                <div className="post__avatar">{post.user.name}</div>
               </div>
               <span className="postDate">
                 Created: {new Date(post.createdAt).toLocaleDateString()}{" "}
@@ -116,9 +119,9 @@ const [comment, setComment] = useState("");
 			</div>
             
           ) : (
-            <div className="postCenter">
+            <div className="post__image">
               <span className="postText">
-                {post.description} <hr />
+                {post.caption} <hr />
                 <br />
               </span>
               {post.image && <img alt="" src={post.image} />}
@@ -129,19 +132,25 @@ const [comment, setComment] = useState("");
               <Favorite onClick={likeHandler} />
               <span className="postFavorites">{like} people liked this</span>
             </div>
-            <div className="postBottomRight">
+            <div className="post__text">
               <form action="">
                 <input
               placeholder="Add a comment"
               type="text"
               name="comment"
-              value={post.comment}
-              onChange={handleComment}
+              value={comment}
+              onChange={handleChange}
               />
-                <button onClick={handleChange}>Add A Comment</button>
+              <br />
+                <button onClick={handleComment}>Add A Comment</button>
              </form>
-              <span className="postComment">{post.comment}comments</span>
-               
+             
+             {/* {posts.comments.map(item => (  
+              <div comment={item}>
+            </div>
+            ))} */}
+               <span className="postComment">{comment}comments</span>
+               <hr></hr>
             </div>
           </div>
         </div>

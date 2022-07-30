@@ -19,7 +19,11 @@ const userSchema = new Schema({
     trim: true,
     minLength: 3,
     required: true
-  }
+  },
+    avatar:{
+      type: String
+    },
+  },{
 },  {
     timestamps: true,
     toJSON: {

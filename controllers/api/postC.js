@@ -99,11 +99,13 @@ async function likePost(req, res) {
 
 //create comment on a post
 async function createComment(req, res) {
-    const { comment, user } = req.body;
+  console.log('this is' , req.user )
+  console.log(req.body)
+ req.body.user = req.user.name
     console.log(req.body, "req.body")
     try {
         const post = await Post.findById(req.params.id);
-        post.comments.push({ comment, user });
+        post.comments.push(req.body);
         await post.save();
         res.json(post);
     } catch (err) {

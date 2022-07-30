@@ -7,6 +7,7 @@ router.post('/', postC.createPost);
 router.get('/:id', postC.getAllPost);
 router.put('/:id', postC.updatePost);
 router.delete('/:id', postC.deletePost);
+router.put('/:id/like', postC.likePost)
 router.post('/:id/comments', postC.createComment);
 
 
