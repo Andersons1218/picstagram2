@@ -1,11 +1,11 @@
 import Feed from "../../components/Feed";
-import './HomePage.css';
+
 
 export default function HomePage({user, setUser}) {
     return (
         <>
         <div>
-            <h1>Picstagram</h1>
+            <img url='https://imgur.com/mFShW83' alt='' />
             <hr />
             <Feed user={user} setUser={setUser}/>  
         </div>

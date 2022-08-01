@@ -7,7 +7,6 @@ export default function AuthPage({ setUser }) {
   return (
     <main>
       <div className="justify-center">
-        <h1 className="font-display font-light text-5xl">Picstagram</h1>
       </div>
       <div className="grid place-items-center mt-6">
         {showLogin ? (

@@ -11,14 +11,16 @@ export default function NavBar({ user, setUser }) {
   setUser(null)
 }
     return(
+        <div className="nav-bar">
         <nav>
             <Link to="/">Home</Link>
             &nbsp; | &nbsp;
-            <Link to="/createPost">Create Post</Link>
+            <Link to="/createPost">New Post</Link>
             &nbsp; | &nbsp;
             Welcome, { user.name }
             &nbsp; | &nbsp;
             <Link to="" onClick={handleLogOut}>Log out</Link>
         </nav>
+        </div>
     )
 }

@@ -1,7 +1,9 @@
 import React from "react";
-import Post from "../components/Post";
+import Post from "../Post/Post";
 import { useState, useEffect } from "react";
-import * as postsAPI from "../utilities/posts-api";
+import * as postsAPI from "../../utilities/posts-api";
+import './Posts.css';
+
 
 const Posts = ({ user, post, setPost }) => {
   const [posts, setPosts] = useState("");
@@ -16,7 +18,7 @@ const Posts = ({ user, post, setPost }) => {
 
   return (
     <div>
-      <div>
+      <div className="timeline">
         {posts ? (
           posts.map((item) => (
             <Post

@@ -1,10 +1,10 @@
-import { updatePost, deletePost, likePost, createComment } from "../utilities/posts-api";
+import { updatePost, deletePost, likePost, createComment } from "../../utilities/posts-api";
 import { useState } from "react";
-import UpdatePostForm from "../components/UpdatePostForm";
+import UpdatePostForm from "../UpdatePostForm";
 import { MoreVert, Favorite } from "@mui/icons-material/";
 import moment from "moment";
 import { Avatar } from "@mui/material";
-
+import './Post.css';
 
 export default function Post({ user, post, setPost, setPosts, posts }) {
   const allowUpdate = post.user === user._id;
@@ -76,15 +76,13 @@ const [comment, setComment] = useState('');
     <>
       <div className="post">
         <div className="post__header">
-          <div className="postTop">
-            <div className="postTopLeft">
-              <div>
-                <Avatar alt="User profile image" src={post.user.avatar} />
+                <Avatar alt="User profile image" />
+                
                 <div className="post__avatar">{post.user.name}</div>
-              </div>
               <span className="postDate">
                 Created: {new Date(post.createdAt).toLocaleDateString()}{" "}
               </span>
+              <br />
               <span className="postDate">
                 Updated: {moment(post.updatedAt).fromNow()}
               </span>
@@ -102,8 +100,7 @@ const [comment, setComment] = useState('');
                   {/* {console.log("isUpdate: ", isUpdate)} */}
                 </div>
               )}
-            </div>
-            <div className="postTopRight">
+            
               <MoreVert />
             </div>
           </div>
@@ -120,9 +117,8 @@ const [comment, setComment] = useState('');
             
           ) : (
             <div className="post__image">
-              <span className="postText">
-                {post.caption} <hr />
-                <br />
+              <span className="post__text">
+                {post.caption}
               </span>
               {post.image && <img alt="" src={post.image} />}
             </div>
@@ -130,31 +126,30 @@ const [comment, setComment] = useState('');
           <div className="postBottom">
             <div className="postBottomLeft">
               <Favorite onClick={likeHandler} />
-              <span className="postFavorites">{like} people liked this</span>
+              <span className="postFavorites">{like} and others liked this</span>
             </div>
             <div className="post__text">
-              <form action="">
+              <form className="comment__form">
+                <div className="comment__wapper">
                 <input
-              placeholder="Add a comment"
+                className="comment__Input"
+              placeholder="Add a comment..."
               type="text"
               name="comment"
               value={comment}
               onChange={handleChange}
               />
               <br />
-                <button onClick={handleComment}>Add A Comment</button>
+                <button className='comment__button text__button' onClick={handleComment}>Add A Comment</button>
+                </div>
              </form>
-             
-             {/* {posts.comments.map(item => (  
-              <div comment={item}>
-            </div>
-            ))} */}
-               <span className="postComment">{comment}comments</span>
-               <hr></hr>
+              {post.comments.map((c) => ( 
+               <span className="postComment"><p>{c.user}: {c.comment}</p></span>
+                ))}
+                <hr></hr>
             </div>
           </div>
-        </div>
-      </div>
+      
     </>
   )
 }
