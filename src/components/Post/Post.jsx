@@ -25,16 +25,13 @@ export default function Post({ user, post, setPost, setPosts, posts }) {
 
   const handleDelete = async (e) => {
     e.preventDefault();
-    console.log("delete");
   deletePost(post._id);
-    console.log('omg just delete')
     setPosts(posts.filter((item) => item._id !== post._id));
   };
   
 
   const handleUpdate = async (e) => {
     e.preventDefault();
-    console.log("update");
     const updatedPost = await updatePost(postData);
     setPostData(updatedPost);
     setIsUpdate(false);
@@ -57,7 +54,6 @@ const [comment, setComment] = useState('');
 
   const handleComment = async (e) => {
     e.preventDefault()
-    console.log("comment");
    createComment(post._id, comment);
     setComment('');
   }
