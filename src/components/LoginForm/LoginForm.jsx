@@ -82,6 +82,7 @@ export default function LoginForm({ setUser }) {
         <p>
           Don't have an account?{" "}
         </p>
+        <p className="error-message">&nbsp;{error}</p>
       </div>
     </div>
   );
